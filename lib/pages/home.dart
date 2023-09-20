@@ -8,9 +8,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutScaffold(
-      body: const Content()
-    );
+    return LayoutScaffold(body: const Content());
   }
 }
 
@@ -21,33 +19,36 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            print("Botón 1");
-          },
-          child: Text('Notificaciones'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            print("Botón 2");
-          },
-          child: Text('Transacciones activas'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            print("Botón 3");
-          },
-          child: Text('Transacciones pasadas'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            print("Botón 4");
-          },
-          child: Text('Nueva Transacción'),
-        )
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              print("Botón 1");
+            },
+            child: Text('Notificaciones'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              print("Botón 2");
+            },
+            child: Text('Transacciones activas'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              print("Botón 3");
+            },
+            child: Text('Transacciones pasadas'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              print("Botón 4");
+            },
+            child: Text('Nueva Transacción'),
+          )
+        ],
+      ),
     );
   }
 }
