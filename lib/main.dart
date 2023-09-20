@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import '/global/theme/app_theme.dart';
+import '/global/theme/app_theme.dart';
 
 import 'package:renters_io_taws/pages/home.dart';
 import 'package:renters_io_taws/pages/stock.dart';
@@ -16,12 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Renters.io',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromRGBO(240, 240, 240, 0.719)
-        )
-      ),
+      theme: appTheme,
       initialRoute: '/home',
       routes: {
         '/home': (context) => const Home(),
