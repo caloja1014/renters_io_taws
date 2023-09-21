@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class NavigationBar extends StatelessWidget {
   const NavigationBar({
-    super.key, 
+    super.key,
     this.transactionButtonLocation = FloatingActionButtonLocation.endDocked,
     this.shape = const CircularNotchedRectangle(),
   });
@@ -24,10 +24,13 @@ class NavigationBar extends StatelessWidget {
       child: IconTheme(
         data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
         child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            if (centerLocations.contains(transactionButtonLocation))
-              const Spacer(),
+            // if (centerLocations.contains(transactionButtonLocation))
+            //  const Spacer(),
             IconButton(
+              iconSize: 30,
               tooltip: 'Inventario',
               icon: const Icon(Icons.inventory),
               onPressed: () {
@@ -35,6 +38,7 @@ class NavigationBar extends StatelessWidget {
               },
             ),
             IconButton(
+              iconSize: 30,
               tooltip: 'Transacciones',
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {},

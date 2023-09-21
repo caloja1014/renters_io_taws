@@ -9,7 +9,7 @@ class LayoutScaffold extends StatelessWidget {
   LayoutScaffold({super.key, required this.body});
 
   FloatingActionButtonLocation transactionButtonLocation =
-      FloatingActionButtonLocation.endDocked;
+      FloatingActionButtonLocation.centerDocked;
   // final ButtonStyle style = TextButton.styleFrom(foregroundColor: Colors.white);
 
   @override
