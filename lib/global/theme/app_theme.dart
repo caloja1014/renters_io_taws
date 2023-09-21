@@ -53,7 +53,7 @@ ThemeData _theme() {
       ),
       titleMedium: TextStyle( // Campos requeridos para llenar
         color: onBackgroundColor,
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: FontWeight.w600,
         fontFamily: 'Lato',
       ),
