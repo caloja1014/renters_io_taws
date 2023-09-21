@@ -1,17 +1,22 @@
+import 'package:renters_io_taws/models/category_enum.dart';
 import 'package:flutter/material.dart';
 
 class Product extends StatelessWidget {
+  final String id;
   final String name;
-  final int availableAmount;
+  final Category category;
   final double price;
   final String imageRoute;
+  final int availableAmount;
 
   const Product({
     super.key,
+    required this.id,
     required this.name,
-    required this.availableAmount,
+    required this.category,
     required this.price,
-    required this.imageRoute,
+    required this.availableAmount,
+    this.imageRoute = '',
   });
 
   @override

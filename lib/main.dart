@@ -3,6 +3,7 @@ import '/global/theme/app_theme.dart';
 
 import 'package:renters_io_taws/pages/home.dart';
 import 'package:renters_io_taws/pages/stock.dart';
+import 'package:renters_io_taws/pages/add_product.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const Home(),
         '/stock': (context) => const Stock(),
+        '/add-product': (context) => const AddProduct(),
       },
     );
   }

@@ -1,18 +1,51 @@
 import './category_enum.dart';
 
+import 'package:uuid/uuid.dart';
+
+var uuid = const Uuid();
+
 class ProductModel {
   String id;
   String name;
   Category category;
   double price;
   double infractionCost;
+  String imageRoute;
 
   ProductModel({
+    required this.id,
     required this.name,
     required this.category,
     required this.price,
     required this.infractionCost,
-    required this.id,
+    this.imageRoute = 'assets/images/product.png',
   });
+
+  static List <ProductModel> getProducts() {
+    List<ProductModel> products = [];
+
+    products.add(
+      ProductModel(
+        id: uuid.v4(),
+        name: 'Abrazadera para manguera de 3/4 pulgadas',
+        category: Category.metal,
+        price: 0.45,
+        infractionCost: 0.10,
+        imageRoute: 'assets/images/abrazadera.png'
+      ),
+    );
+    products.add(
+      ProductModel(
+        id: uuid.v4(),
+        name: 'Abrazadera para manguera de 1/4 pulgadas',
+        category: Category.metal,
+        price: 0.30,
+        infractionCost: 0.05,
+        imageRoute: 'assets/images/abrazadera.png'
+      )
+    );
+    
+    return products;
+  }
 
 }

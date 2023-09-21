@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:renters_io_taws/models/category_enum.dart';
 
 class Filter extends StatefulWidget {
   const Filter({
     super.key,
     required this.text,
+    required this.category
   });
 
+  final Category category;
   final String text;
 
   @override
@@ -27,8 +30,8 @@ class _FilterState extends State<Filter> {
 
     return GestureDetector(
       onTap: _handleTap,
-      child: SizedBox(
-        height: 50.0,
+      child: FittedBox(
+        fit: BoxFit.fitWidth,
         child: Container(
           decoration: BoxDecoration(
             color: backgroundColor,
