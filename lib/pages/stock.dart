@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:renters_io_taws/layout/layout_scaffold.dart';
 
 import 'package:renters_io_taws/components/search_bar.dart' as search_bar;
+import 'package:renters_io_taws/components/filter.dart' as filter;
 import 'package:renters_io_taws/components/product.dart' as product;
 
 class Stock extends StatelessWidget {
@@ -22,6 +23,6 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const product.Product(name: 'Abrazadera', availableAmount: 5, price: 0.50, imageRoute: 'assets/images/abrazadera.png');
+    return const filter.Filter(text: "Filtro");
   }
 }

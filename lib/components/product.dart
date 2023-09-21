@@ -17,10 +17,20 @@ class Product extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 360.0,
-      height: 140, // Adjust the width as needed
-      color: Color(0xFFD9D9D9), // Background color
-      padding: EdgeInsets.all(10.0), // Padding for spacing
+      width: 360,
+      height: 140,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.tertiary, // Background color
+        border: Border.all(
+          color: Theme.of(context).colorScheme.outline, // Border color
+          width: 1.0, // Border width
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5.0), // Rounded corners
+        ),
+      ),
+      margin: const EdgeInsets.all(10.0), // Margin for spacing
+      padding: const EdgeInsets.all(10.0), // Padding for spacing
       child: Row(
         children: [
           // Left side (75% width)
@@ -33,25 +43,32 @@ class Product extends StatelessWidget {
                 Text(
                   name,
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontSize: 18.0,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Lato',
                   ),
                 ),
-                SizedBox(height: 8.0), // Spacer
+                const SizedBox(height: 8.0), // Spacer
                 // Available amount
                 Text(
-                  'Available: $availableAmount',
+                  'Disponible: $availableAmount unidades',
                   style: TextStyle(
-                    fontSize: 16.0,
+                    color: Theme.of(context).colorScheme.onBackground,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Lato',
                   ),
                 ),
-                SizedBox(height: 8.0), // Spacer
+                const SizedBox(height: 8.0), // Spacer
                 // Price
                 Text(
-                  'Price: \$${price.toStringAsFixed(2)}',
+                  'Precio unitario: \$${price.toStringAsFixed(2)}',
                   style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontSize: 16.0,
-                    color: Colors.green, // Price text color
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Lato',
                   ),
                 ),
               ],
