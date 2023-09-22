@@ -8,16 +8,17 @@ class Product extends StatelessWidget {
   final double price;
   final String imageRoute;
   final int availableAmount;
+  final Widget widget;
 
-  const Product({
-    super.key,
-    required this.id,
-    required this.name,
-    required this.category,
-    required this.price,
-    required this.availableAmount,
-    this.imageRoute = '',
-  });
+  const Product(
+      {super.key,
+      required this.id,
+      required this.name,
+      required this.category,
+      required this.price,
+      required this.availableAmount,
+      this.imageRoute = '',
+      this.widget = const SizedBox(width: 0, height: 0)});
 
   @override
   Widget build(BuildContext context) {
@@ -55,27 +56,34 @@ class Product extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8.0), // Spacer
-                // Available amount
-                Text(
-                  'Disponible: $availableAmount unidades',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Lato',
-                  ),
-                ),
+                availableAmount != -1
+                    ?
+                    // Available amount
+                    Text(
+                        'Disponible: $availableAmount unidades',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onBackground,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Lato',
+                        ),
+                      )
+                    : const SizedBox(width: 0, height: 0),
                 const SizedBox(height: 8.0), // Spacer
-                // Price
-                Text(
-                  'Precio unitario: \$${price.toStringAsFixed(2)}',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Lato',
-                  ),
-                ),
+                price != -1
+                    ?
+                    // Price
+                    Text(
+                        'Precio unitario: \$${price.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onBackground,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Lato',
+                        ),
+                      )
+                    : const SizedBox(width: 0, height: 0),
+                Container(width: 75, child: widget)
               ],
             ),
           ),

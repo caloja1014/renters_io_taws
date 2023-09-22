@@ -18,8 +18,10 @@ class LayoutScaffold extends StatelessWidget {
       appBar: buildAppBar(context),
       body: body,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Create',
+        onPressed: () {
+          Navigator.pushNamed(context, '/home');
+        },
+        tooltip: 'Página principal',
         child: Icon(Icons.home),
       ),
       floatingActionButtonLocation: transactionButtonLocation,

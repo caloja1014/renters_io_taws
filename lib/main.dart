@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:renters_io_taws/pages/add_transaction.dart';
+import 'package:renters_io_taws/pages/transaction.dart';
 import '/global/theme/app_theme.dart';
 
 import 'package:renters_io_taws/pages/home.dart';
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const Home(),
         '/stock': (context) => const Stock(),
         '/add-product': (context) => const AddProduct(),
+        '/transaction': (context) => const Transaction(),
+        '/add-transaction': (context) => const AddTransaction()
       },
     );
   }

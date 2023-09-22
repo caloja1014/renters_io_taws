@@ -10,13 +10,12 @@ class AvailableAmountWidget extends StatefulWidget {
 }
 
 class _AvailableAmountWidgetState extends State<AvailableAmountWidget> {
-
   @override
   void initState() {
     super.initState();
     _amount = widget.initialAmount;
   }
-  
+
   int _amount = 0;
 
   @override
@@ -27,11 +26,10 @@ class _AvailableAmountWidgetState extends State<AvailableAmountWidget> {
         Text(
           'Cantidad disponible',
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onBackground,
-            fontSize: 16.0,
-            fontWeight: FontWeight.w700,
-            fontFamily: 'Poppins'
-          ),
+              color: Theme.of(context).colorScheme.onBackground,
+              fontSize: 16.0,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Poppins'),
         ),
         const SizedBox(height: 8.0),
         Container(
@@ -107,7 +105,7 @@ class _AvailableAmountWidgetState extends State<AvailableAmountWidget> {
               });
             },
             decoration: const InputDecoration(
-              hintText: 'Ingresa la cantidad dispnible',
+              hintText: 'Ingresa la cantidad disponible',
             ),
           ),
           actions: [

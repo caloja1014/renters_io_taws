@@ -43,7 +43,8 @@ class Content extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              print("Botón 4");
+              Navigator.pushNamed(context, '/transaction');
+              ;
             },
             child: Text('Nueva Transacción'),
           )
