@@ -50,7 +50,7 @@ class Content extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
       ),
-      child: Column(
+      child: ListView(
         children: [
           const SizedBox(height: 20.0),
           input_grid.InputGrid(
@@ -58,10 +58,58 @@ class Content extends StatelessWidget {
             childrenRight: childrenRight,
           ),
           const SizedBox(height: 20.0),
-          button.Button(text: 'Crear producto', onPressed: () {})
+          const Row(
+            children: <Widget>[
+              Expanded(
+                  child: Text('Nombre',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic))),
+              Expanded(
+                  child: Text('Precio',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic))),
+              Expanded(
+                  child: Text('Total',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic))),
+              Expanded(
+                  child: Text('Cantidad',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic))),
+            ],
+          ),
+          const Row(
+            children: <Widget>[
+              Expanded(child: Text('Focos LED')),
+              Expanded(child: Text('\$ 1.25')),
+              Expanded(child: Text('\$ 2.50')),
+              new_product_amount.AvailableAmountWidget(withText: true),
+            ],
+          ),
+          const Row(
+            children: <Widget>[
+              Expanded(child: Text('Focos LED')),
+              Expanded(child: Text('\$ 1.25')),
+              Expanded(child: Text('\$ 2.50')),
+              new_product_amount.AvailableAmountWidget(withText: true),
+            ],
+          ),
+          const Row(
+            children: <Widget>[
+              Expanded(
+                  child: Text('Total',
+                      style: TextStyle(fontWeight: FontWeight.bold))),
+              Expanded(child: Text('\$ 5.00')),
+            ],
+          ),
+          const SizedBox(height: 20.0),
+          button.Button(text: 'Solicitar producto', onPressed: () {})
         ],
       ),
     );
-    ;
   }
 }

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class AvailableAmountWidget extends StatefulWidget {
   final int initialAmount;
+  final bool withText;
 
-  const AvailableAmountWidget({super.key, this.initialAmount = 0});
+  const AvailableAmountWidget(
+      {super.key, this.initialAmount = 0, this.withText = false});
 
   @override
   _AvailableAmountWidgetState createState() => _AvailableAmountWidgetState();
@@ -23,14 +25,19 @@ class _AvailableAmountWidgetState extends State<AvailableAmountWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          'Cantidad disponible',
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.onBackground,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w700,
-              fontFamily: 'Poppins'),
-        ),
+        widget.withText
+            ? SizedBox(
+                width: 0,
+                height: 0,
+              )
+            : Text(
+                'Cantidad disponible',
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Poppins'),
+              ),
         const SizedBox(height: 8.0),
         Container(
           decoration: BoxDecoration(
