@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renters_io_taws/controllers/bottom_bar_controller.dart';
 
 class NavigationBar extends StatelessWidget {
-  const NavigationBar({
+   NavigationBar({
     super.key,
     this.transactionButtonLocation = FloatingActionButtonLocation.endDocked,
     this.shape = const CircularNotchedRectangle(),
@@ -9,7 +11,7 @@ class NavigationBar extends StatelessWidget {
 
   final FloatingActionButtonLocation transactionButtonLocation;
   final NotchedShape? shape;
-
+  final bottomController = Get.find<BottomController>();
   static final List<FloatingActionButtonLocation> centerLocations =
       <FloatingActionButtonLocation>[
     FloatingActionButtonLocation.centerDocked,
@@ -34,14 +36,25 @@ class NavigationBar extends StatelessWidget {
               tooltip: 'Inventario',
               icon: const Icon(Icons.inventory),
               onPressed: () {
-                Navigator.pushNamed(context, '/stock');
+                bottomController.changePage(0);
               },
             ),
+
+            IconButton(
+                onPressed: () {
+                  bottomController.changePage(2);
+                },
+                icon: const Icon(
+                  Icons.home,
+                  size: 30,
+                )),
             IconButton(
               iconSize: 30,
               tooltip: 'Transacciones',
               icon: const Icon(Icons.shopping_cart),
-              onPressed: () {},
+              onPressed: () {
+                bottomController.changePage(1);
+              },
             ),
           ],
         ),

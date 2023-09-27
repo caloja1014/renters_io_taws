@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:renters_io_taws/layout/layout_scaffold.dart';
 import 'package:renters_io_taws/layout/input_grid.dart' as input_grid;
@@ -9,8 +10,9 @@ import 'package:renters_io_taws/components/new_product_amount.dart'
 import 'package:renters_io_taws/components/field.dart' as field;
 import 'package:renters_io_taws/components/input.dart' as input;
 import 'package:renters_io_taws/components/combo_box.dart' as combo_box;
+import 'package:renters_io_taws/pages/add_transaction/add_transaction_controller.dart';
 
-class AddTransaction extends StatelessWidget {
+class AddTransaction extends GetView<AddTransactionController> {
   const AddTransaction({super.key});
 
   @override

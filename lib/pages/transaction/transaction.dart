@@ -11,8 +11,8 @@ import 'package:renters_io_taws/models/product_model.dart';
 import 'package:renters_io_taws/models/stock_model.dart';
 import 'package:renters_io_taws/models/category_enum.dart';
 
-class Stock extends StatelessWidget {
-  const Stock({super.key});
+class Transaction extends StatelessWidget {
+  const Transaction({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,21 +59,23 @@ class Content extends StatelessWidget {
           const SizedBox(height: 20.0),
           Expanded(
             child: ListView(
-              children: stock.map((stock) => product.Product(
-                id: stock.product.id,
-                name: stock.product.name,
-                category: stock.product.category,
-                price: stock.product.price,
-                availableAmount: stock.quantity,
-                imageRoute: stock.product.imageRoute,
-              )).toList(),
+              children: stock
+                  .map((stock) => product.Product(
+                        id: stock.product.id,
+                        name: stock.product.name,
+                        category: stock.product.category,
+                        price: stock.product.price,
+                        availableAmount: -1,
+                        imageRoute: stock.product.imageRoute,
+                      ))
+                  .toList(),
             ),
           ),
           const SizedBox(height: 20.0),
           button.Button(
-            text: 'Agregar producto',
+            text: 'Continuar',
             onPressed: () {
-              Navigator.pushNamed(context, '/add-product');
+              Navigator.pushNamed(context, '/add-transaction');
             },
           ),
           const SizedBox(height: 20.0)

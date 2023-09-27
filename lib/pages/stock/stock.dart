@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:renters_io_taws/layout/layout_scaffold.dart';
 
 import 'package:renters_io_taws/components/search_bar.dart' as search_bar;
@@ -6,15 +7,14 @@ import 'package:renters_io_taws/components/filter.dart' as filter;
 import 'package:renters_io_taws/components/product.dart' as product;
 import 'package:renters_io_taws/components/button.dart' as button;
 import 'package:renters_io_taws/components/filter_button.dart' as filter_button;
-import 'package:renters_io_taws/components/new_product_amount.dart' as counter;
-import 'package:renters_io_taws/models/frequency_enum.dart';
 
 import 'package:renters_io_taws/models/product_model.dart';
 import 'package:renters_io_taws/models/stock_model.dart';
 import 'package:renters_io_taws/models/category_enum.dart';
+import 'package:renters_io_taws/pages/stock/stock_controller.dart';
 
-class Transaction extends StatelessWidget {
-  const Transaction({super.key});
+class Stock extends GetView<StockController> {
+  const Stock({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +61,21 @@ class Content extends StatelessWidget {
           const SizedBox(height: 20.0),
           Expanded(
             child: ListView(
-              children: stock
-                  .map((stock) => product.Product(
-                        id: stock.product.id,
-                        name: stock.product.name,
-                        category: stock.product.category,
-                        price: stock.product.price,
-                        availableAmount: -1,
-                        imageRoute: stock.product.imageRoute,
-                      ))
-                  .toList(),
+              children: stock.map((stock) => product.Product(
+                id: stock.product.id,
+                name: stock.product.name,
+                category: stock.product.category,
+                price: stock.product.price,
+                availableAmount: stock.quantity,
+                imageRoute: stock.product.imageRoute,
+              )).toList(),
             ),
           ),
           const SizedBox(height: 20.0),
           button.Button(
-            text: 'Continuar',
+            text: 'Agregar producto',
             onPressed: () {
-              Navigator.pushNamed(context, '/add-transaction');
+              Navigator.pushNamed(context, '/add-product');
             },
           ),
           const SizedBox(height: 20.0)

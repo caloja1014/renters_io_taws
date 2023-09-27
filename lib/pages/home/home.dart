@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:renters_io_taws/layout/layout_scaffold.dart';
+import 'package:renters_io_taws/pages/home/home_controller.dart';
+import 'package:renters_io_taws/routes/app_pages.dart';
 
-class Home extends StatelessWidget {
-  const Home({
-    super.key,
-  });
+class Home extends GetView<HomeController> {
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +44,7 @@ class Content extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/transaction');
-              ;
+              Get.toNamed(Routes.TRANSACTION);
             },
             child: Text('Nueva Transacción'),
           )

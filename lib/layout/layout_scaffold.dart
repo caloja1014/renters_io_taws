@@ -5,9 +5,9 @@ import 'package:renters_io_taws/components/navigation_bar.dart'
 
 class LayoutScaffold extends StatelessWidget {
   final Widget body;
-
-  LayoutScaffold({super.key, required this.body});
-
+  final bool isHome;
+  LayoutScaffold({super.key, required this.body, this.isHome = false});
+  
   FloatingActionButtonLocation transactionButtonLocation =
       FloatingActionButtonLocation.centerDocked;
   // final ButtonStyle style = TextButton.styleFrom(foregroundColor: Colors.white);
