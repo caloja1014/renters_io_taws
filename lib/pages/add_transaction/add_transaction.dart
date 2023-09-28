@@ -37,8 +37,8 @@ class Content extends StatelessWidget {
   List<Widget> get childrenRight => [
         const input.CustomInput(placeholder: 'Fecha de inicio'),
         const input.CustomInput(placeholder: 'Fecha de finalización'),
-        const combo_box.CustomComboBox(
-            labelText: 'Seleccionar', isFrequency: true),
+        // const combo_box.CustomComboBox(
+        //     labelText: 'Seleccionar', isFrequency: true),
         const input.CustomInput(placeholder: 'Nombre del cliente'),
         const input.CustomInput(placeholder: 'Número de teléfono'),
         const input.CustomInput(placeholder: 'Notas'),

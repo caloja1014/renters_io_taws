@@ -12,6 +12,7 @@ import 'package:renters_io_taws/models/product_model.dart';
 import 'package:renters_io_taws/models/stock_model.dart';
 import 'package:renters_io_taws/models/category_enum.dart';
 import 'package:renters_io_taws/pages/stock/stock_controller.dart';
+import 'package:renters_io_taws/routes/app_pages.dart';
 
 class Stock extends GetView<StockController> {
   const Stock({super.key});
@@ -75,7 +76,7 @@ class Content extends StatelessWidget {
           button.Button(
             text: 'Agregar producto',
             onPressed: () {
-              Navigator.pushNamed(context, '/add-product');
+              Get.toNamed(Routes.ADD_PRODUCT);
             },
           ),
           const SizedBox(height: 20.0)

@@ -9,7 +9,8 @@ abstract class Routes {
   static const STOCK = _Paths.STOCK;
   static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
   static const TRANSACTION = _Paths.TRANSACTION;
-  static const ADD_TRANSACTION = _Paths.ADD_TRANSACTION;
+  // static const ADD_TRANSACTION = _Paths.ADD_TRANSACTION;
+  static const TRANSACTION_CONFIRMATION = _Paths.TRANSACTION_CONFIRMATION;
 }
 
 abstract class _Paths {
@@ -17,5 +18,6 @@ abstract class _Paths {
   static const STOCK = '/stock';
   static const ADD_PRODUCT = '/add-product';
   static const TRANSACTION = '/transaction';
-  static const ADD_TRANSACTION = '/add-transaction';
+  // static const ADD_TRANSACTION = '/add-transaction';
+  static const TRANSACTION_CONFIRMATION = '/transaction-confirmation';
 }

@@ -9,7 +9,8 @@ import 'package:renters_io_taws/components/new_product_amount.dart'
     as new_product_amount;
 import 'package:renters_io_taws/components/field.dart' as field;
 import 'package:renters_io_taws/components/input.dart' as input;
-import 'package:renters_io_taws/components/combo_box.dart' as combo_box;
+import 'package:renters_io_taws/components/combo_box.dart';
+import 'package:renters_io_taws/models/category_enum.dart';
 import 'package:renters_io_taws/pages/add_product/add_product_controller.dart';
 
 class AddProduct extends GetView<AddProductController> {
@@ -33,7 +34,7 @@ class Content extends StatelessWidget {
 
   List<Widget> get childrenRight => [
         const input.CustomInput(placeholder: 'Nombre'),
-        const combo_box.CustomComboBox(labelText: 'Seleccionar'),
+        const CustomComboBox<Category>(labelText: 'Seleccionar', options: Category.values,),
         const input.CustomInput(placeholder: 'Alquiler', isPrice: true),
         const input.CustomInput(placeholder: 'Infracción', isPrice: true),
       ];

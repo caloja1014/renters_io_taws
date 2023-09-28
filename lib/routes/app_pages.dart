@@ -10,6 +10,9 @@ import 'package:renters_io_taws/pages/stock/stock.dart';
 import 'package:renters_io_taws/pages/stock/stock_binding.dart';
 import 'package:renters_io_taws/pages/transaction/transaction.dart';
 import 'package:renters_io_taws/pages/transaction/transaction_binding.dart';
+import 'package:renters_io_taws/pages/transaction_confirmation/transaction_confirmation.dart';
+import 'package:renters_io_taws/pages/transaction_confirmation/transaction_confirmation_binding.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -39,10 +42,15 @@ class AppPages {
       page: () => Transaction(),
       binding: TransactionBinding(),
     ),
+    // GetPage(
+    //   name: _Paths.ADD_TRANSACTION,
+    //   page: () => AddProduct(),
+    //   binding: AddTransactionBinding(),
+    // ),
     GetPage(
-      name: _Paths.ADD_TRANSACTION,
-      page: () => AddProduct(),
-      binding: AddTransactionBinding(),
+      name: _Paths.TRANSACTION_CONFIRMATION,
+      page: () => TransactionConfirmation(),
+      binding: TransactionConfirmationBinding(),
     ),
   ];
 }

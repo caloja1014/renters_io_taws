@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:renters_io_taws/layout/add_products_layout.dart';
 import 'package:renters_io_taws/layout/layout_scaffold.dart';
 
 import 'package:renters_io_taws/components/search_bar.dart' as search_bar;
@@ -10,8 +12,10 @@ import 'package:renters_io_taws/components/filter_button.dart' as filter_button;
 import 'package:renters_io_taws/models/product_model.dart';
 import 'package:renters_io_taws/models/stock_model.dart';
 import 'package:renters_io_taws/models/category_enum.dart';
+import 'package:renters_io_taws/pages/transaction/transaction_controller.dart';
+import 'package:renters_io_taws/routes/app_pages.dart';
 
-class Transaction extends StatelessWidget {
+class Transaction extends GetView<TransactionController> {
   const Transaction({super.key});
 
   @override
@@ -57,25 +61,19 @@ class Content extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20.0),
-          Expanded(
-            child: ListView(
-              children: stock
-                  .map((stock) => product.Product(
-                        id: stock.product.id,
-                        name: stock.product.name,
-                        category: stock.product.category,
-                        price: stock.product.price,
-                        availableAmount: -1,
-                        imageRoute: stock.product.imageRoute,
-                      ))
-                  .toList(),
-            ),
-          ),
+          AddProductsLayout(products: [ // dummy data
+            Container(color: Colors.red),
+            Container(color: Colors.green),
+            Container(color: Colors.blue),
+            Container(color: Colors.yellow),
+            Container(color: Colors.orange),
+            Container(color: Colors.purple),
+          ]),
           const SizedBox(height: 20.0),
           button.Button(
             text: 'Continuar',
             onPressed: () {
-              Navigator.pushNamed(context, '/add-transaction');
+              Get.toNamed(Routes.TRANSACTION_CONFIRMATION);
             },
           ),
           const SizedBox(height: 20.0)

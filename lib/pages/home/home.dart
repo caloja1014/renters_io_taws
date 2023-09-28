@@ -47,6 +47,12 @@ class Content extends StatelessWidget {
               Get.toNamed(Routes.TRANSACTION);
             },
             child: Text('Nueva Transacción'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Get.toNamed(Routes.STOCK);
+            },
+            child: Text('Inventario'),
           )
         ],
       ),
