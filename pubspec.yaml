@@ -41,6 +41,8 @@ dependencies:
   flutter_svg: ^2.0.7
   image_picker: ^1.0.4
   get: ^4.6.6
+  sqflite: ^2.3.0
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:
