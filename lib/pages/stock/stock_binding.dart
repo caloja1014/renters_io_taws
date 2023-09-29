@@ -9,5 +9,6 @@ class StockBinding extends Bindings {
     Get.lazyPut<StockController>(
       () => StockController(),
     );
+    
   }
 }

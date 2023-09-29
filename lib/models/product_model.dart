@@ -21,6 +21,26 @@ class ProductModel {
     this.imageRoute = 'assets/images/product.png',
   });
 
+  ProductModel.fromMap(Map<String, dynamic> map) :
+    id = map['id'],
+    name = map['name'],
+    category = Category.values.firstWhere((element) => element.toString() == 'Category.' + map['category']),
+    price = map['price'],
+    infractionCost = map['infractionCost'],
+    imageRoute = map['imageRoute'];
+  
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'category': category.toString().split('.').last,
+      'price': price,
+      'infractionCost': infractionCost,
+      'imageRoute': imageRoute,
+    };
+  }
+
   static List <ProductModel> getProducts() {
     List<ProductModel> products = [];
 
