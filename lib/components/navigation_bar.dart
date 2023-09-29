@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renters_io_taws/controllers/bottom_bar_controller.dart';
+import 'package:renters_io_taws/routes/app_pages.dart';
 
 class NavigationBar extends StatelessWidget {
-   NavigationBar({
+  NavigationBar({
     super.key,
     this.transactionButtonLocation = FloatingActionButtonLocation.endDocked,
     this.shape = const CircularNotchedRectangle(),
@@ -36,13 +37,13 @@ class NavigationBar extends StatelessWidget {
               tooltip: 'Inventario',
               icon: const Icon(Icons.inventory),
               onPressed: () {
-                bottomController.changePage(0);
+                Get.toNamed(Routes.STOCK);
               },
             ),
 
             IconButton(
                 onPressed: () {
-                  bottomController.changePage(2);
+                  Get.toNamed(Routes.HOME);
                 },
                 icon: const Icon(
                   Icons.home,
@@ -53,7 +54,7 @@ class NavigationBar extends StatelessWidget {
               tooltip: 'Transacciones',
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
-                bottomController.changePage(1);
+                Get.toNamed(Routes.TRANSACTION);
               },
             ),
           ],

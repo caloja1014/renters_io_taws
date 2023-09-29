@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      defaultTransition: Transition.fadeIn,
       initialBinding: AppBinding(),
     );
   }
