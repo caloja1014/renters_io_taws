@@ -6,7 +6,9 @@ import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 
 class SqliteService {
-  Future<Database> initializeDB() async {
+  late Database _database;
+
+  Future<void> initializeDB() async {
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, "database.db");
 
@@ -14,37 +16,39 @@ class SqliteService {
     var exists = await databaseExists(path);
 
     if (!exists) {
-      print("Creating new copy from asset");
-      // Make sure the parent directory exists
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
-
-      // Copy from asset
-      ByteData data = await rootBundle.load(join("assets", "database.db"));
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
-      // Write and flush the bytes written
-      await File(path).writeAsBytes(bytes, flush: true);
-    } else {
-      print("Opening existing database");
-    }
-
-    return await openDatabase(
-      path,
-      onCreate: (database, version) async {
-        await database.execute(
-          "CREATE TABLE Products (id VARCHAR(36) PRIMARY KEY, name VARCHAR(255) NOT NULL, category TEXT NOT NULL CHECK(category IN ('metal', 'plastic', 'wood', 'glass', 'paper')), quantity INT NOT NULL, price DECIMAL(10, 2) NOT NULL, infractionCost DECIMAL(10, 2) NOT NULL, imageRoute VARCHAR(255) NOT NULL)",
-        );
-      },
+      _database = await openDatabase(
+        path,
+        onCreate: (database, version) async {
+          await database.execute(
+            "CREATE TABLE Products (id VARCHAR(36) PRIMARY KEY, name VARCHAR(255) NOT NULL, category TEXT NOT NULL CHECK(category IN ('metal', 'plastic', 'wood', 'glass', 'paper')), quantity INT NOT NULL, price DECIMAL(10, 2) NOT NULL, infractionCost DECIMAL(10, 2) NOT NULL, imageRoute VARCHAR(255) NOT NULL)",
+          );
+          
+          // Insert initial data
+          await database.rawInsert(
+            "INSERT INTO Products (id, name, category, quantity, price, infractionCost, imageRoute) VALUES ('1', 'Abrazadera para manguera de 3/4 pulgadas', 'metal', 50, 0.45, 0.10, 'assets/images/abrazadera.png')",
+          );
+          await database.rawInsert(
+            "INSERT INTO Products (id, name, category, quantity, price, infractionCost, imageRoute) VALUES ('2', 'Abrazadera para manguera de 1/2 pulgada', 'metal', 100, 0.25, 0.05, 'assets/images/abrazadera.png')",
+          );
+        },
       version: 1,
       readOnly: false,
-    );
+      );
+    } else {
+      _database = await openDatabase(
+        path,
+        version: 1,
+        readOnly: false,
+      );
+    }    
+  }
+
+  Future<Database> getDatabase() async {
+    return _database;
   }
 
   Future<int> createProduct(ProductModel product) async {
-    final Database db = await initializeDB();
+    final Database db = await getDatabase();
     final id = await db.insert(
       'Products',
       product.toMap(),
@@ -54,7 +58,7 @@ class SqliteService {
   }
 
   Future<List<ProductModel>> getProducts() async {
-    final Database db = await initializeDB();
+    final Database db = await getDatabase();
     final List<Map<String, dynamic>> maps = await db.query('Products');
 
     return List.generate(maps.length, (i) {
@@ -63,7 +67,7 @@ class SqliteService {
   }
 
   Future<void> deleteProduct(String id) async {
-    final db = await initializeDB();
+    final db = await getDatabase();
 
     await db.delete(
       'Products',
