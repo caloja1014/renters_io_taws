@@ -8,38 +8,27 @@ import 'package:renters_io_taws/components/filter.dart' as filter;
 import 'package:renters_io_taws/components/product.dart' as product;
 import 'package:renters_io_taws/components/button.dart' as button;
 import 'package:renters_io_taws/components/filter_button.dart' as filter_button;
+import 'package:renters_io_taws/components/add_product.dart';
 
 import 'package:renters_io_taws/models/product_model.dart';
 import 'package:renters_io_taws/models/stock_model.dart';
 import 'package:renters_io_taws/models/category_enum.dart';
+import 'package:renters_io_taws/pages/stock/stock_controller.dart';
 import 'package:renters_io_taws/pages/transaction/transaction_controller.dart';
 import 'package:renters_io_taws/routes/app_pages.dart';
 
 class Transaction extends GetView<TransactionController> {
-  const Transaction({super.key});
+  Transaction({super.key});
+
+  List<Category> categoryList = Category.values.toList();
+
+  TransactionController transactionController = Get.put(TransactionController());
+  StockController stockController = Get.put(StockController());
 
   @override
   Widget build(BuildContext context) {
     return LayoutScaffold(
-      body: Content(),
-    );
-  }
-}
-
-class Content extends StatelessWidget {
-  final List<ProductModel> products;
-  final List<StockModel> stock;
-
-  Content({
-    super.key,
-  })  : products = ProductModel.getProducts(),
-        stock = StockModel.buildStock(ProductModel.getProducts());
-
-  List<Category> categoryList = Category.values.toList();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+      body: Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
       ),
@@ -61,14 +50,11 @@ class Content extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20.0),
-          AddProductsLayout(products: [ // dummy data
-            Container(color: Colors.red),
-            Container(color: Colors.green),
-            Container(color: Colors.blue),
-            Container(color: Colors.yellow),
-            Container(color: Colors.orange),
-            Container(color: Colors.purple),
-          ]),
+          AddProductsLayout(
+            products: stockController.products.map((product) => 
+              AddProductComponent()
+            ).toList(),
+          ),
           const SizedBox(height: 20.0),
           button.Button(
             text: 'Continuar',
@@ -79,6 +65,6 @@ class Content extends StatelessWidget {
           const SizedBox(height: 20.0)
         ],
       ),
-    );
+    ));
   }
 }

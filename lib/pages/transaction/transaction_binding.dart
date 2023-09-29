@@ -10,5 +10,8 @@ class TransactionBinding extends Bindings {
     Get.lazyPut<TransactionController>(
       () => TransactionController(),
     );
+    Get.lazyPut<StockController>(
+      () => StockController(),
+    );
   }
 }
