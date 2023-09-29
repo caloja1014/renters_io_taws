@@ -1,6 +1,11 @@
 import './product_model.dart';
 
 import 'package:uuid/uuid.dart';
+import 'package:renters_io_taws/models/stock_model.dart';
+import 'package:renters_io_taws/models/stock_model.dart';
+import 'package:renters_io_taws/models/stock_model.dart';
+import 'package:renters_io_taws/models/stock_model.dart';
+import 'package:renters_io_taws/models/stock_model.dart';
 
 var uuid = const Uuid();
 
@@ -22,6 +27,11 @@ class StockModel {
       quantity: quantity,
     );
   }
+
+  StockModel.fromMap(Map<String, dynamic> map) :
+    id = map['id'],
+    product = ProductModel.fromMap(map['product']),
+    quantity = map['quantity'];
 
   static List<StockModel> buildStock(List<ProductModel> products) {
     List<StockModel> stock = [];

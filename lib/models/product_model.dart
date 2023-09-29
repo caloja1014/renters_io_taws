@@ -8,6 +8,7 @@ class ProductModel {
   String id;
   String name;
   Category category;
+  int quantity;
   double price;
   double infractionCost;
   String imageRoute;
@@ -16,6 +17,7 @@ class ProductModel {
     required this.id,
     required this.name,
     required this.category,
+    required this.quantity,
     required this.price,
     required this.infractionCost,
     this.imageRoute = 'assets/images/product.png',
@@ -25,6 +27,7 @@ class ProductModel {
     id = map['id'],
     name = map['name'],
     category = Category.values.firstWhere((element) => element.toString() == 'Category.' + map['category']),
+    quantity = map['quantity'],
     price = map['price'],
     infractionCost = map['infractionCost'],
     imageRoute = map['imageRoute'];
@@ -35,6 +38,7 @@ class ProductModel {
       'id': id,
       'name': name,
       'category': category.toString().split('.').last,
+      'quantity': quantity,
       'price': price,
       'infractionCost': infractionCost,
       'imageRoute': imageRoute,
@@ -49,6 +53,7 @@ class ProductModel {
         id: uuid.v4(),
         name: 'Abrazadera para manguera de 3/4 pulgadas',
         category: Category.metal,
+        quantity: 50,
         price: 0.45,
         infractionCost: 0.10,
         imageRoute: 'assets/images/abrazadera.png'
@@ -59,6 +64,7 @@ class ProductModel {
         id: uuid.v4(),
         name: 'Abrazadera para manguera de 1/4 pulgadas',
         category: Category.metal,
+        quantity: 100,
         price: 0.30,
         infractionCost: 0.05,
         imageRoute: 'assets/images/abrazadera.png'

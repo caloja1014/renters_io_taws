@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:renters_io_taws/models/product_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
 class SqliteService {
@@ -11,8 +12,8 @@ class SqliteService {
 
     // Check if the database exists
     var exists = await databaseExists(path);
+
     if (!exists) {
-      // Should happen only the first time you launch your application
       print("Creating new copy from asset");
       // Make sure the parent directory exists
       try {
@@ -29,19 +30,16 @@ class SqliteService {
     } else {
       print("Opening existing database");
     }
-    // open the database
-    db = await openDatabase(path, readOnly: true);
 
-    return openDatabase(
-      join(path, 'database.db'),
+    return await openDatabase(
+      path,
       onCreate: (database, version) async {
         await database.execute(
-            "CREATE TYPE Category AS ENUM ('metal', 'plastic', 'wood', 'glass', 'paper')");
-        await database.execute(
-          "CREATE TABLE Products (id VARCHAR(36) PRIMARY KEY, name VARCHAR(255) NOT NULL, category Category NOT NULL, price DECIMAL(10, 2) NOT NULL, infractionCost DECIMAL(10, 2) NOT NULL, imageRoute VARCHAR(255) NOT NULL)",
+          "CREATE TABLE Products (id VARCHAR(36) PRIMARY KEY, name VARCHAR(255) NOT NULL, category TEXT NOT NULL CHECK(category IN ('metal', 'plastic', 'wood', 'glass', 'paper')), quantity INT NOT NULL, price DECIMAL(10, 2) NOT NULL, infractionCost DECIMAL(10, 2) NOT NULL, imageRoute VARCHAR(255) NOT NULL)",
         );
       },
       version: 1,
+      readOnly: false,
     );
   }
 

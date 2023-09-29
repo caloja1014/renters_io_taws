@@ -7,7 +7,7 @@ class BottomController extends GetxController {
 
   final pagingController = PageController(initialPage: 2);
  final pages = [
-    const Stock(),
+    Stock(),
     Container(),
   ];
   void changePage(int index) {
