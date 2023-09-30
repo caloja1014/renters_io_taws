@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-const List<String> list = <String>['Emprendimiento1', 'Two', 'Three', 'Four'];
+import 'package:get/get.dart';
+import 'package:renters_io_taws/controllers/entrepreneurship_controller.dart';
 
 AppBar buildAppBar(BuildContext context) {
   return AppBar(
@@ -44,33 +44,36 @@ class DropdownButtonCompany extends StatefulWidget {
 }
 
 class _DropdownButtonCompanyState extends State<DropdownButtonCompany> {
-  String dropdownValue = list.first;
+  final entreController = Get.find<EntrepreneurshipController>();
+  String? dropdownValue;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      dropdownColor: Color.fromARGB(255, 91, 112, 151),
-      style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-      focusColor: Color.fromARGB(0, 0, 0, 0),
-      underline: Container(
-        height: 2,
-        color: Color.fromARGB(255, 255, 255, 255),
-      ),
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: list.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
+    return Obx(() {
+      final list = entreController.listEntre.map((e) => e.name).toList();
+      final selectedValue = entreController.entrerPreneurSelected.value;
+      return DropdownButton<String>(
+        value: selectedValue?.name,
+        icon: const Icon(Icons.arrow_downward),
+        elevation: 16,
+        dropdownColor: Color.fromARGB(255, 91, 112, 151),
+        style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        focusColor: Color.fromARGB(0, 0, 0, 0),
+        underline: Container(
+          height: 2,
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
+        onChanged: (String? value) {
+          entreController.entrerPreneurSelected.value =
+              entreController.listEntre.firstWhere((e) => e.name == value);
+        },
+        items: list.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      );
+    });
   }
 }

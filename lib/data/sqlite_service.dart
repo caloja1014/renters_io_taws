@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 
 class SqliteService {
-  late Database _database;
+  static Database? _database;
 
   Future<void> initializeDB() async {
     var databasesPath = await getDatabasesPath();
@@ -22,7 +22,7 @@ class SqliteService {
           await database.execute(
             "CREATE TABLE Products (id VARCHAR(36) PRIMARY KEY, name VARCHAR(255) NOT NULL, category TEXT NOT NULL CHECK(category IN ('metal', 'plastic', 'wood', 'glass', 'paper')), quantity INT NOT NULL, price DECIMAL(10, 2) NOT NULL, infractionCost DECIMAL(10, 2) NOT NULL, imageRoute VARCHAR(255) NOT NULL)",
           );
-          
+
           // Insert initial data
           await database.rawInsert(
             "INSERT INTO Products (id, name, category, quantity, price, infractionCost, imageRoute) VALUES ('1', 'Abrazadera para manguera de 3/4 pulgadas', 'metal', 50, 0.45, 0.10, 'assets/images/abrazadera.png')",
@@ -31,8 +31,8 @@ class SqliteService {
             "INSERT INTO Products (id, name, category, quantity, price, infractionCost, imageRoute) VALUES ('2', 'Abrazadera para manguera de 1/2 pulgada', 'metal', 100, 0.25, 0.05, 'assets/images/abrazadera.png')",
           );
         },
-      version: 1,
-      readOnly: false,
+        version: 1,
+        readOnly: false,
       );
     } else {
       _database = await openDatabase(
@@ -40,11 +40,22 @@ class SqliteService {
         version: 1,
         readOnly: false,
       );
-    }    
+    }
   }
 
+  static SqliteService? _instance;
+
+  SqliteService._internal() {
+    _instance = this;
+  }
+
+  factory SqliteService() => _instance ?? SqliteService._internal();
+
   Future<Database> getDatabase() async {
-    return _database;
+    if (_database == null) {
+      await initializeDB();
+    }
+    return _database!;
   }
 
   Future<int> createProduct(ProductModel product) async {
