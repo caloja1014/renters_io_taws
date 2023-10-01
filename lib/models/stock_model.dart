@@ -35,23 +35,23 @@ class StockModel {
 
   static List<StockModel> buildStock(List<ProductModel> products) {
     List<StockModel> stock = [];
-    List<ProductModel> products = ProductModel.getProducts();
+    // List<ProductModel> products = ProductModel.getProducts();
 
-    stock.add(
-      StockModel(
-        id: uuid.v1(),
-        product: products[0],
-        quantity: 10,
-      ),
-    );
+    // stock.add(
+    //   StockModel(
+    //     id: uuid.v1(),
+    //     product: products[0],
+    //     quantity: 10,
+    //   ),
+    // );
 
-    stock.add(
-      StockModel(
-        id: uuid.v1(),
-        product: products[1],
-        quantity: 20,
-      ),
-    );
+    // stock.add(
+    //   StockModel(
+    //     id: uuid.v1(),
+    //     product: products[1],
+    //     quantity: 20,
+    //   ),
+    // );
 
     return stock;
   }

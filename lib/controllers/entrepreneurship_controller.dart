@@ -13,50 +13,28 @@ class EntrepreneurshipController extends GetxController {
     super.onInit();
     listEntre.add(EntrepreneurshipModel(
         id: '1',
-        name: 'Emprendimiento 1',
+        name: 'Ferretería La Cumbre',
         listInactiveTransactions: [],
-        listStock: [
-          StockModel(
-            product: ProductModel(
-                id: "1",
-                name: "Prueba 1",
-                category: Category.metal,
-                quantity: 2,
-                price: 123,
-                infractionCost: 2),
-            quantity: 2,
-            id: "1",
-          )
-        ],
-        listActiveTransactions: []));
+        listProducts: [],
+        listActiveTransactions: []
+        )
+      );
     listEntre.add(EntrepreneurshipModel(
         id: '2',
-        name: 'Emprendimiento 2',
+        name: 'Electrónica Juanito',
         listInactiveTransactions: [],
-        listStock: [
-          StockModel(
-            product: ProductModel(
-                id: "2",
-                name: "Prueba 2",
-                category: Category.metal,
-                quantity: 2,
-                price: 123,
-                infractionCost: 2),
-            quantity: 2,
-            id: "2",
-          ),
-          StockModel(
-            product: ProductModel(
-                id: "3",
-                name: "Prueba 3",
-                category: Category.metal,
-                quantity: 2,
-                price: 123,
-                infractionCost: 2),
-            quantity: 2,
-            id: "3",
-          )
-        ],
-        listActiveTransactions: []));
+        listProducts: [],
+        listActiveTransactions: []
+        )
+      );
+    setDefaultEntrepreneurship();
+  }
+
+  void setDefaultEntrepreneurship() {
+    entrerPreneurSelected.value = listEntre[0];
+  }
+
+  String getEntrepreneurshipId() {
+    return entrerPreneurSelected.value!.id;
   }
 }

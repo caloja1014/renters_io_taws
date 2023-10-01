@@ -8,7 +8,7 @@ import 'package:renters_io_taws/components/image_picker.dart' as image_picker;
 import 'package:renters_io_taws/components/new_product_amount.dart'
     as new_product_amount;
 import 'package:renters_io_taws/components/field.dart' as field;
-import 'package:renters_io_taws/components/input.dart' as input;
+import 'package:renters_io_taws/components/input.dart';
 import 'package:renters_io_taws/components/combo_box.dart' as combo_box;
 import 'package:renters_io_taws/pages/add_transaction/add_transaction_controller.dart';
 
@@ -35,13 +35,13 @@ class Content extends StatelessWidget {
       ];
 
   List<Widget> get childrenRight => [
-        const input.CustomInput(placeholder: 'Fecha de inicio'),
-        const input.CustomInput(placeholder: 'Fecha de finalización'),
-        // const combo_box.CustomComboBox(
+        CustomInputWidget(placeholder: 'Fecha de inicio'),
+        CustomInputWidget(placeholder: 'Fecha de finalización'),
+        // combo_box.CustomComboBox(
         //     labelText: 'Seleccionar', isFrequency: true),
-        const input.CustomInput(placeholder: 'Nombre del cliente'),
-        const input.CustomInput(placeholder: 'Número de teléfono'),
-        const input.CustomInput(placeholder: 'Notas'),
+        CustomInputWidget(placeholder: 'Nombre del cliente'),
+        CustomInputWidget(placeholder: 'Número de teléfono'),
+        CustomInputWidget(placeholder: 'Notas'),
         const field.TitleWidget(title: ''),
       ];
 

@@ -28,12 +28,12 @@ class Content extends StatelessWidget {
   ];
 
   List<Widget> get childrenRight => [
-    const CustomInput(placeholder: 'dd/mm/aaaa'),
-    const CustomInput(placeholder: 'dd/mm/aaaa'),
+    CustomInputWidget(placeholder: 'dd/mm/aaaa'),
+    CustomInputWidget(placeholder: 'dd/mm/aaaa'),
     const CustomComboBox<ChargeFrequency>(labelText: 'Seleccionar', options: ChargeFrequency.values,),
-    const CustomInput(placeholder: 'Nombre del cliente'),
-    const CustomInput(placeholder: 'Número telf. del cliente'),
-    const CustomInput(placeholder: 'Notas'),
+    CustomInputWidget(placeholder: 'Nombre del cliente'),
+    CustomInputWidget(placeholder: 'Número telf. del cliente'),
+    CustomInputWidget(placeholder: 'Notas'),
   ];
 
   @override

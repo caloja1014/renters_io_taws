@@ -1,17 +1,19 @@
+import 'package:renters_io_taws/models/product_model.dart';
+
 import './stock_model.dart';
 import './transaction_model.dart';
 
 class EntrepreneurshipModel {
   String id;
   String name;
-  List<StockModel> listStock;
+  List<ProductModel> listProducts;
   List<TransactionModel> listActiveTransactions;
   List<TransactionModel> listInactiveTransactions;
 
   EntrepreneurshipModel({
     required this.name, 
     required this.id,
-    required this.listStock,
+    required this.listProducts,
     required this.listActiveTransactions,
     required this.listInactiveTransactions,
   });

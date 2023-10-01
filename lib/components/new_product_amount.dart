@@ -1,97 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AvailableAmountWidget extends StatefulWidget {
-  final int initialAmount;
-  final bool withText;
+class AvailableAmountWidgetController extends GetxController {
+  final amount = Rx<int>(0);
 
-  const AvailableAmountWidget(
-      {super.key, this.initialAmount = 0, this.withText = false});
+  int get text => amount.value;
 
-  @override
-  _AvailableAmountWidgetState createState() => _AvailableAmountWidgetState();
-}
-
-class _AvailableAmountWidgetState extends State<AvailableAmountWidget> {
-  @override
-  void initState() {
-    super.initState();
-    _amount = widget.initialAmount;
+  void setAmount(int newValue) {
+    amount.value = newValue;
   }
 
-  int _amount = 0;
+  void incrementAmount() {
+    amount.value++;
+  }
 
+  void decrementAmount() {
+    if (amount.value > 0) amount.value--;
+  }
+}
+
+class AvailableAmountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        widget.withText
-            ? SizedBox(
-                width: 0,
-                height: 0,
-              )
-            : Text(
-                'Cantidad disponible',
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Poppins'),
-              ),
-        const SizedBox(height: 8.0),
-        Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(10.0),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.outline,
-              width: 2.0,
-            ),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _amount--;
-                  });
-                },
-                child: const Icon(
-                  Icons.remove,
-                  size: 40.0,
+    AvailableAmountWidgetController controller = Get.put(
+      AvailableAmountWidgetController(),
+      tag: 'availableAmount',
+    );
+
+    return Obx(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+                  'Cantidad disponible',
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Poppins'),
                 ),
+          const SizedBox(height: 8.0),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.outline,
+                width: 2.0,
               ),
-              GestureDetector(
-                onTap: () {
-                  _showAmountDialog(context);
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  width: 60.0,
-                  child: Text(
-                    '$_amount',
-                    style: Theme.of(context).textTheme.labelLarge,
-                    textAlign: TextAlign.center,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    controller.decrementAmount();
+                  },
+                  child: const Icon(
+                    Icons.remove,
+                    size: 40.0,
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _amount++;
-                  });
-                },
-                child: const Icon(
-                  Icons.add,
-                  size: 40.0,
+                GestureDetector(
+                  onTap: () {
+                    _showAmountDialog(context);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    width: 60.0,
+                    child: Text(
+                      '${controller.amount.value}',
+                      style: Theme.of(context).textTheme.labelLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                GestureDetector(
+                  onTap: () {
+                    controller.incrementAmount();
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 40.0,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -107,9 +105,9 @@ class _AvailableAmountWidgetState extends State<AvailableAmountWidget> {
           content: TextField(
             keyboardType: TextInputType.number,
             onChanged: (value) {
-              setState(() {
-                _amount = int.tryParse(value) ?? 0;
-              });
+              Get.find<AvailableAmountWidgetController>(
+                      tag: 'availableAmount')
+                  .setAmount(int.parse(value));
             },
             decoration: const InputDecoration(
               hintText: 'Ingresa la cantidad disponible',

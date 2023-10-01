@@ -20,16 +20,16 @@ class SqliteService {
         path,
         onCreate: (database, version) async {
           await database.execute(
-            "CREATE TABLE Products (id VARCHAR(36) PRIMARY KEY, name VARCHAR(255) NOT NULL, category TEXT NOT NULL CHECK(category IN ('metal', 'plastic', 'wood', 'glass', 'paper')), quantity INT NOT NULL, price DECIMAL(10, 2) NOT NULL, infractionCost DECIMAL(10, 2) NOT NULL, imageRoute VARCHAR(255) NOT NULL)",
+            "CREATE TABLE Products (id VARCHAR(36) PRIMARY KEY, idEntrepreneurship VARCHAR(36), name VARCHAR(255) NOT NULL, category TEXT NOT NULL CHECK(category IN ('metal', 'plastic', 'wood', 'glass', 'paper', 'tools')), quantity INT NOT NULL, price DECIMAL(10, 2) NOT NULL, infractionCost DECIMAL(10, 2) NOT NULL, imageRoute VARCHAR(255) NOT NULL)",
           );
 
           // Insert initial data
-          await database.rawInsert(
-            "INSERT INTO Products (id, name, category, quantity, price, infractionCost, imageRoute) VALUES ('1', 'Abrazadera para manguera de 3/4 pulgadas', 'metal', 50, 0.45, 0.10, 'assets/images/abrazadera.png')",
-          );
-          await database.rawInsert(
-            "INSERT INTO Products (id, name, category, quantity, price, infractionCost, imageRoute) VALUES ('2', 'Abrazadera para manguera de 1/2 pulgada', 'metal', 100, 0.25, 0.05, 'assets/images/abrazadera.png')",
-          );
+          // await database.rawInsert(
+          //   "INSERT INTO Products (id, idEntrepreneurship, name, category, quantity, price, infractionCost, imageRoute) VALUES ('1', '1', 'Abrazadera para manguera de 3/4 pulgadas', 'metal', 50, 0.45, 0.10, 'assets/images/abrazadera.png')",
+          // );
+          // await database.rawInsert(
+          //   "INSERT INTO Products (id, idEntrepreneurship, name, category, quantity, price, infractionCost, imageRoute) VALUES ('2', '2', 'Abrazadera para manguera de 1/2 pulgada', 'metal', 100, 0.25, 0.05, 'assets/images/abrazadera.png')",
+          // );
         },
         version: 1,
         readOnly: false,
@@ -71,6 +71,19 @@ class SqliteService {
   Future<List<ProductModel>> getProducts() async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> maps = await db.query('Products');
+
+    return List.generate(maps.length, (i) {
+      return ProductModel.fromMap(maps[i]);
+    });
+  }
+
+  Future<List<ProductModel>> getProductsFromEntrepreneurship(String id) async {
+    final Database db = await getDatabase();
+    final List<Map<String, dynamic>> maps = await db.query(
+      'Products',
+      where: "idEntrepreneurship = ?",
+      whereArgs: [id],
+    );
 
     return List.generate(maps.length, (i) {
       return ProductModel.fromMap(maps[i]);

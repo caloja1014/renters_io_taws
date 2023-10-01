@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:renters_io_taws/models/category_enum.dart';
 import 'package:flutter/material.dart';
 
@@ -90,8 +92,8 @@ class Product extends StatelessWidget {
           // Right side (25% width)
           Expanded(
             flex: 1, // Takes 1/4 of the available space
-            child: Image.asset(
-              imageRoute,
+            child: Image.file(
+              File(imageRoute),
               fit: BoxFit.cover,
             ),
           ),
