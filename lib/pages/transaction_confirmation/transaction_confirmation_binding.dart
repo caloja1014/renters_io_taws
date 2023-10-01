@@ -4,6 +4,6 @@ import 'package:renters_io_taws/pages/transaction_confirmation/transaction_confi
 class TransactionConfirmationBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<TransactionConfirmationController>(() => TransactionConfirmationController(),);
+    Get.put<TransactionConfirmationController>(TransactionConfirmationController());
   }
 }

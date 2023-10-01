@@ -51,14 +51,6 @@ class ImagePickerWidget extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   ListTile(
-                                    leading: const Icon(Icons.camera_alt),
-                                    title: const Text('Toma una foto'),
-                                    onTap: () {
-                                      controller.pickImage(ImageSource.camera);
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  ListTile(
                                     leading: const Icon(Icons.photo_library),
                                     title: const Text('Elegir de galería'),
                                     onTap: () {

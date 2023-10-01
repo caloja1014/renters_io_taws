@@ -17,12 +17,10 @@ import 'package:renters_io_taws/pages/stock/stock_controller.dart';
 import 'package:renters_io_taws/pages/transaction/transaction_controller.dart';
 import 'package:renters_io_taws/routes/app_pages.dart';
 
-class Transaction extends StatelessWidget {
+class Transaction extends GetView<TransactionController> {
   Transaction({super.key});
 
   List<Category> categoryList = Category.values.toList();
-
-  TransactionController transactionController = Get.put(TransactionController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ class Transaction extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            CustomSearchWidget(),
+            const CustomSearchWidget(),
             const SizedBox(height: 20.0),
             Wrap(
               spacing: 8.0,
@@ -54,7 +52,7 @@ class Transaction extends StatelessWidget {
             button.Button(
               text: 'Continuar',
               onPressed: () {
-                Get.toNamed(Routes.TRANSACTION_CONFIRMATION);
+                Get.toNamed(Routes.TRANSACTION_CONFIRMATION, arguments: controller.products);
               },
             ),
             const SizedBox(height: 20.0)

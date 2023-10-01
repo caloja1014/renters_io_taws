@@ -6,18 +6,13 @@ import 'package:renters_io_taws/components/input.dart';
 import 'package:renters_io_taws/layout/input_grid.dart';
 import 'package:renters_io_taws/layout/layout_scaffold.dart';
 import 'package:renters_io_taws/models/charge_frequency_enum.dart';
-import 'package:renters_io_taws/pages/transaction/transaction_controller.dart';
+import 'package:renters_io_taws/pages/transaction_confirmation/transaction_confirmation_controller.dart';
+import 'package:renters_io_taws/components/button.dart' as custom_button;
+import 'package:renters_io_taws/layout/transaction_list_layout.dart';
 
-class TransactionConfirmation extends GetView<TransactionController> {
+class TransactionConfirmation extends GetView<TransactionConfirmationController> {
   const TransactionConfirmation({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return LayoutScaffold(body: Content());
-  }
-}
-
-class Content extends StatelessWidget {
   List<Widget> get childrenLeft => [
     const TitleWidget(title: 'Fecha inicio'),
     const TitleWidget(title: 'Fecha fin'),
@@ -38,19 +33,27 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
-      ),
-      child: Column(
-        children: [
-          InputGrid(
-            childrenLeft: childrenLeft, 
-            childrenRight: childrenRight
-          )
-        ],
-      ),
+    return LayoutScaffold(
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+        ),
+        child: Column(
+          children: [
+            InputGrid(
+              childrenLeft: childrenLeft, 
+              childrenRight: childrenRight
+            ),
+            TransactionListLayout(transactionProducts: controller.transactionProducts),
+            const SizedBox(height: 20.0),
+            custom_button.Button(
+              text: 'Alquilar',
+              onPressed: () {},
+            ),
+          ],
+        ),
+      )
     );
   }
 }

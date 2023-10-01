@@ -10,31 +10,27 @@ class AddProductsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
-    // final columnCount = (screenWidth / 150).floor();
+    final screenWidth = MediaQuery.of(context).size.width;
+    final columnCount = (screenWidth / 150).floor();
 
-    return GetBuilder<StockController>(
-      builder: (stockController) =>
-        Container(
-          height: 300.0,
-          child: GridView.count(
-            crossAxisCount: 2,
-            children: stockController.products.map((product) => 
-              GetBuilder<AddProductController>(
-                id: product.id,
-                init: AddProductController(
+    final stockController = Get.find<StockController>();
+
+    return Obx(
+      () => SizedBox(
+            height: 300.0,
+            child: GridView.count(
+              crossAxisCount: columnCount,
+              children: stockController.products.map((product) => 
+                AddProductComponent(
                   id: product.id,
-                  quantity: 0,
-                ),
-                builder: (addProductController) => AddProductComponent(
                   name: product.name,
                   imageRoute: product.imageRoute,
-                  price: product.price,
+                  price: product.price,   
+                  product: product, 
                 )
-              )
-            ).toList(),
-          ),
-        )
+              ).toList(),
+            ),
+      ),
     );
   }
 }
