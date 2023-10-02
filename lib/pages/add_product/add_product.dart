@@ -66,7 +66,7 @@ class AddProduct extends GetView<AddProductController> {
               Get.find<ImagePickerController>().imageFilePath, // imageRoute
             );
 
-            Get.toNamed(Routes.ADD_PRODUCT);
+            Get.toNamed(Routes.STOCK);
           })
         ],
       ),

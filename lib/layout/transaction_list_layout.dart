@@ -37,10 +37,10 @@ class TransactionListLayout extends StatelessWidget {
                           label: Text('P.uni',
                               style: Theme.of(context).textTheme.titleMedium)),
                       DataColumn(
-                          label: Text('Total',
+                          label: Text('Cant.',
                               style: Theme.of(context).textTheme.titleMedium)),
                       DataColumn(
-                          label: Text('Cant.',
+                          label: Text('Total',
                               style: Theme.of(context).textTheme.titleMedium)),
                     ],
                     rows: transactionProducts.map((product) {
@@ -50,8 +50,8 @@ class TransactionListLayout extends StatelessWidget {
                       return DataRow(cells: [
                         DataCell(Text(product.name)),
                         DataCell(Text(product.price.toString())),
-                        DataCell(Text(total.toString())),
                         DataCell(Text(product.quantity.toString())),
+                        DataCell(Text(total.toString())),
                       ]);
                     }).toList(),
                   ),
