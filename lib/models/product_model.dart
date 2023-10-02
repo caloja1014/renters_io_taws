@@ -49,4 +49,12 @@ class ProductModel {
     };
   }
 
+  static listToString(List<ProductModel> list) {
+    String result = '';
+    for (var element in list) {
+      result += '${element.quantity} unidades de ${element.name} ,';
+    }
+    return result;
+  }
+
 }

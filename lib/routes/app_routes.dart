@@ -11,6 +11,8 @@ abstract class Routes {
   static const TRANSACTION = _Paths.TRANSACTION;
   // static const ADD_TRANSACTION = _Paths.ADD_TRANSACTION;
   static const TRANSACTION_CONFIRMATION = _Paths.TRANSACTION_CONFIRMATION;
+  static const LIST_TRANSACTIONS = _Paths.LIST_TRANSACTIONS;
+  static const ACTIVE_TRANSACTIONS = _Paths.ACTIVE_TRANSACTIONS;
 }
 
 abstract class _Paths {
@@ -20,4 +22,6 @@ abstract class _Paths {
   static const TRANSACTION = '/transaction';
   // static const ADD_TRANSACTION = '/add-transaction';
   static const TRANSACTION_CONFIRMATION = '/transaction-confirmation';
+  static const LIST_TRANSACTIONS = '/list-transactions';
+  static const ACTIVE_TRANSACTIONS = '/active-transactions';
 }

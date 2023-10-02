@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:renters_io_taws/models/category_enum.dart';
 import 'package:renters_io_taws/models/entrepreneurship_model.dart';
 import 'package:renters_io_taws/models/product_model.dart';
-import 'package:renters_io_taws/models/stock_model.dart';
+import 'package:renters_io_taws/models/rented_stock_model.dart';
 
 class EntrepreneurshipController extends GetxController {
   final listEntre = RxList<EntrepreneurshipModel>.empty(growable: true);

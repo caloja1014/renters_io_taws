@@ -26,7 +26,7 @@ class SqliteService {
 
           await database.execute(
             "CREATE TABLE Transactions (id VARCHAR(36) PRIMARY KEY, idEntrepreneurship VARCHAR(36), listStockRented TEXT NOT NULL, startDate DATETIME NOT NULL, endDate DATETIME NOT NULL, chargeFrequency TEXT NOT NULL CHECK(chargeFrequency IN ('daily', 'weekly', 'monthly', 'yearly')), clientName VARCHAR(255) NOT NULL, clientNumber VARCHAR(255) NOT NULL, notes TEXT NOT NULL)"
-          );  
+          );
         },
         version: 1,
         readOnly: false,
@@ -65,6 +65,29 @@ class SqliteService {
     return id;
   }
 
+  Future<int> addTransaction(TransactionModel transaction) async {
+    final Database db = await getDatabase();
+    final id = await db.insert(
+      'Transactions', 
+      transaction.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    return id;
+  }
+
+  Future<List<TransactionModel>> getTransactionsFromEntrepreneurship(String id) async {
+    final Database db = await getDatabase();
+    final List<Map<String, dynamic>> maps = await db.query(
+      'Transactions',
+      where: "idEntrepreneurship = ?",
+      whereArgs: [id],
+    );
+
+    return List.generate(maps.length, (i) {
+      return TransactionModel.fromMap(maps[i]);
+    });
+  }
+
   Future<List<ProductModel>> getProducts() async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> maps = await db.query('Products');
@@ -97,7 +120,45 @@ class SqliteService {
     );
   }
 
-  Future<void> addTransaction(TransactionModel transaction) async {
-    
+  Future<void> updateProducts(List<ProductModel> products) async {
+    final db = await getDatabase();
+
+    for (final product in products) {
+      final existingProduct = await getProduct(product.id);
+
+      if (existingProduct != null) {
+        final newQuantity = existingProduct.quantity - product.quantity;
+
+        if (newQuantity > 0) {
+          await db.update(
+            'Products',
+            {'quantity': newQuantity},
+            where: "id = ?",
+            whereArgs: [product.id],
+          );
+        } else {
+          await db.delete(
+            'Products',
+            where: "id = ?",
+            whereArgs: [product.id],
+          );
+        }
+      }
+    }
+  }
+
+  Future<ProductModel?> getProduct(String id) async {
+    final db = await getDatabase();
+    final maps = await db.query(
+      'Products',
+      where: "id = ?",
+      whereArgs: [id],
+    );
+
+    if (maps.isNotEmpty) {
+      return ProductModel.fromMap(maps.first);
+    } else {
+      return null;
+    }
   }
 }

@@ -24,21 +24,21 @@ class Content extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          // ElevatedButton(
+          //   onPressed: () {
+          //     print("Botón 1");
+          //   },
+          //   child: Text('Notificaciones'),
+          // ),
           ElevatedButton(
             onPressed: () {
-              print("Botón 1");
-            },
-            child: Text('Notificaciones'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              print("Botón 2");
+              Get.toNamed(Routes.ACTIVE_TRANSACTIONS);
             },
             child: Text('Transacciones activas'),
           ),
           ElevatedButton(
             onPressed: () {
-              print("Botón 3");
+              Get.toNamed(Routes.LIST_TRANSACTIONS);
             },
             child: Text('Transacciones pasadas'),
           ),

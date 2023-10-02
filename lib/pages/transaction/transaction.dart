@@ -11,7 +11,7 @@ import 'package:renters_io_taws/components/filter_button.dart' as filter_button;
 import 'package:renters_io_taws/components/add_product.dart';
 
 import 'package:renters_io_taws/models/product_model.dart';
-import 'package:renters_io_taws/models/stock_model.dart';
+import 'package:renters_io_taws/models/rented_stock_model.dart';
 import 'package:renters_io_taws/models/category_enum.dart';
 import 'package:renters_io_taws/pages/stock/stock_controller.dart';
 import 'package:renters_io_taws/pages/transaction/transaction_controller.dart';

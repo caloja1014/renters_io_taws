@@ -1,6 +1,6 @@
 import 'package:renters_io_taws/models/product_model.dart';
 
-import './stock_model.dart';
+import 'rented_stock_model.dart';
 import './transaction_model.dart';
 
 class EntrepreneurshipModel {
