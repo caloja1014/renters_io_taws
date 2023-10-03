@@ -5,7 +5,6 @@ import 'package:renters_io_taws/pages/active_transactions/active_transactions.da
 import 'package:renters_io_taws/pages/active_transactions/active_transactions_binding.dart';
 import 'package:renters_io_taws/pages/add_product/add_product.dart';
 import 'package:renters_io_taws/pages/add_product/add_product_binding.dart';
-import 'package:renters_io_taws/pages/add_transaction/add_transaction_binding.dart';
 import 'package:renters_io_taws/pages/home/home.dart';
 import 'package:renters_io_taws/pages/home/home_binding.dart';
 import 'package:renters_io_taws/pages/list_transactions/list_transactions.dart';
