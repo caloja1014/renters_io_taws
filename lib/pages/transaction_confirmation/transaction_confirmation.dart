@@ -32,8 +32,8 @@ class TransactionConfirmation extends GetView<TransactionConfirmationController>
   ];
 
   List<Widget> get childrenRight => [
-    CustomInputWidget(placeholder: 'inicio dd-mm-aaaa'),
-    CustomInputWidget(placeholder: 'fin dd-mm-aaaa'),
+    CustomInputWidget(placeholder: 'inicio dd/mm/aaaa'),
+    CustomInputWidget(placeholder: 'fin dd/mm/aaaa'),
     const CustomComboBox<ChargeFrequency>(labelText: 'Seleccionar', options: ChargeFrequency.values,),
     CustomInputWidget(placeholder: 'Nombre del cliente'),
     CustomInputWidget(placeholder: 'Número telf. del cliente'),

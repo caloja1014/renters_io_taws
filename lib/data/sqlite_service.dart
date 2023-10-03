@@ -87,7 +87,7 @@ class SqliteService {
       return TransactionModel.fromMap(maps[i]);
     });
   }
-
+  
   Future<List<ProductModel>> getProducts() async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> maps = await db.query('Products');

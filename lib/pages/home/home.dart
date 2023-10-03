@@ -40,7 +40,7 @@ class Content extends StatelessWidget {
             onPressed: () {
               Get.toNamed(Routes.LIST_TRANSACTIONS);
             },
-            child: Text('Transacciones pasadas'),
+            child: Text('Transacciones'),
           ),
           ElevatedButton(
             onPressed: () {

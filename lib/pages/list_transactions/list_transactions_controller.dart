@@ -9,7 +9,7 @@ class ListTransactionsController extends GetxController {
 
   RxList<TransactionModel> transactions = RxList<TransactionModel>([]);
 
-  Future<void> _refreshTransactions() async {
+  Future<void> refreshTransactions() async {
     String entrepreneurshipId = entreController.getEntrepreneurshipId();
     transactions.value = await sqliteService.getTransactionsFromEntrepreneurship(entrepreneurshipId);
     entreController.entrerPreneurSelected.listen((event) async {
@@ -18,9 +18,9 @@ class ListTransactionsController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    _refreshTransactions();
+    await refreshTransactions();
     update();
   }
 }
