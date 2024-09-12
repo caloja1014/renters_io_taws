@@ -7,6 +7,7 @@ Aplicación de Alquiler de Inventario
 Existe un cierto tipo de comercio como las ferreterías que tienen un extenso inventario de productos que pueden llegar a ser muy ser costos. Y normalmente la gente cuando desea comprar, se asusta por el precio.
 Por ejemplo, la gente necesita realizar unas pequeñas adecuaciones en casa, por lo que va a comprar un taladro para colgar una nueva repisa, y oh sorpresa! Cuesta cientos de dólares y solo lo usará por un 
 día... así que prefiere pedir prestado a un conocido la herramienta.
+
 ![Selection_002](https://github.com/user-attachments/assets/4a86aa56-4c19-4808-991c-daffb6d261c6)
 
 Para los comercios es problemático, porque:
